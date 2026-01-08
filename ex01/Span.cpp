@@ -1,4 +1,5 @@
 #include "Span.h"
+#include <iostream>
 #include <algorithm>
 #include <stdexcept>
 #include <climits>
@@ -25,6 +26,10 @@ Span &Span::operator=(const Span &src)
 
 void Span::addNumber(const int &item)
 {
+	#ifdef DEBUG
+		std::cout << "Data Size : " << _data.size() << std::endl;
+	#endif
+
 	if (_data.size() >= _n)
 		throw std::length_error("Span is full.");
 
@@ -32,13 +37,22 @@ void Span::addNumber(const int &item)
 }
 
 
+/*
+	Complexity
 
+		Sorting: O(n log n)
+
+		Loop: O(n)
+
+		Total: O(n log n)
+*/
 int Span::shortestSpan()
 {
 	if (_data.size() < 2)
 		throw std::length_error("Span must contain at least two numbers.");
 
 	std::sort(_data.begin(), _data.end());
+
 
 	unsigned int shortest = UINT_MAX;
 
@@ -50,15 +64,38 @@ int Span::shortestSpan()
 
 	return shortest;
 }
+
 int Span::longestSpan()
 {
 	if (_data.size() < 2)
 		throw std::length_error("Span must contain at least two numbers.");
 
+	int min = _data[0], max = _data[0];
+
+	for (size_t i = 1; i < _data.size(); i++)
+	{
+		if (_data[i] < min)
+			min = _data[i];
+		if (_data[i] > max)
+			max = _data[i];
+	}
+
+	return max - min;
+}
+/*
 	std::sort(_data.begin(), _data.end());
 
 	return (_data[_data.size() - 1] - _data[0]);
+*/
+
+
+
+void Span::display()
+{
+	for (size_t i = 0; i < _n; i++)
+		std::cout << _data[i] << std::endl;
 }
+
 
 Span::~Span()
 {

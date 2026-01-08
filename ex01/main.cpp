@@ -1,17 +1,99 @@
 #include "Span.h"
 #include <iostream>
+#include <vector>
+#include <cassert>
+
+
+void	_42()
+{
+	Span sp = Span(5);
+
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+}
+
+void	_insert()
+{
+	std::vector<int> nums;
+
+	nums.push_back(42);
+	nums.push_back(10);
+	nums.push_back(19);
+	nums.push_back(2);
+
+	Span sp(4);
+	std::cout << *nums.begin() << std::endl;
+	std::cout << *nums.end() << std::endl;
+	
+	sp.addRange(nums.begin(), nums.end());
+
+	sp.display();
+
+}
+
+void	_tsts()
+{
+	Span sp(0);
+
+	try
+	{
+		sp.addNumber(1337);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	Span spp(1);
+	spp.addNumber(42);
+	try
+	{
+		spp.longestSpan();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	try
+	{
+		spp.shortestSpan();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	
+
+}
+
+void	_one_thousand()
+{
+	Span span(10000);
+
+	for (size_t i = 0; i < 10000; i++) span.addNumber(1337);
+	
+	assert(span.shortestSpan() == 0);
+	assert(span.longestSpan() == 0);
+
+}
 
 int main()
 {
-	 Span sp(5);
-        sp.addNumber(6);
-        sp.addNumber(3);
-        sp.addNumber(17);
-        sp.addNumber(9);
-        sp.addNumber(11);
+	_42();
 
-        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-        std::cout << "Longest span:  " << sp.longestSpan() << std::endl;
+	_insert();
+
+	_tsts();
+
+	_one_thousand();
 
 	return 0;
 }
