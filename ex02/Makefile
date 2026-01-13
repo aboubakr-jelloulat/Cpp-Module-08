@@ -6,7 +6,7 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 OBJDIR = build
 
-SRC :=   main.cpp MutantStack.cpp
+SRC :=   main.cpp 
 
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
@@ -17,7 +17,7 @@ $(NAME): $(OBJ)
 	@echo  "\nCreated executable '$(NAME)'"
 
 
-$(OBJDIR)/%.o: %.cpp Makefile *h *tpp | $(OBJDIR)
+$(OBJDIR)/%.o: %.cpp Makefile *h  | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 	
 $(OBJDIR):
@@ -39,3 +39,4 @@ exec : all clean
 ifdef DEBUG
 CXXFLAGS += -DDEBUG
 endif
+
