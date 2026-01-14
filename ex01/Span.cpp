@@ -38,14 +38,9 @@ void Span::addNumber(const int &item)
 
 
 /*
-	Complexity
-
-		Sorting: O(n log n)
-
-		Loop: O(n)
-
-		Total: O(n log n)
+	O(nlogn)
 */
+
 int Span::shortestSpan()
 {
 	if (_data.size() < 2)
@@ -70,24 +65,10 @@ int Span::longestSpan()
 	if (_data.size() < 2)
 		throw std::length_error("Span must contain at least two numbers.");
 
-	int min = _data[0], max = _data[0];
-
-	for (size_t i = 1; i < _data.size(); i++)
-	{
-		if (_data[i] < min)
-			min = _data[i];
-		if (_data[i] > max)
-			max = _data[i];
-	}
-
-	return max - min;
-}
-/*
 	std::sort(_data.begin(), _data.end());
 
 	return (_data[_data.size() - 1] - _data[0]);
-*/
-
+}
 
 
 void Span::display()
