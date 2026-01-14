@@ -73,31 +73,12 @@ void	_42_list()
 }
 
 
-void	_Why_no_OCF()
-{
-	MutantStack<int> *mstack = new MutantStack<int>();
-
-	mstack->push(5);
-	assert(mstack->top() == 5);
-
-	MutantStack<int> mstack2(*mstack);
-	assert(mstack2.top() == 5);
-
-	MutantStack<int> mstack3;
-	mstack3 = *mstack;
-	assert(mstack3.top() == 5);
-
-	delete mstack;
-}
-
-
 int main(void)
 {
-	// _42();
+	_42();
 
-	// _42_list();
+	_42_list();
 
-	_Why_no_OCF();
 
 	return 0;
 }

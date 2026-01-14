@@ -6,13 +6,13 @@
 template <typename T>
 class MutantStack : public std::stack<T>
 {
-    // MutantStack();
-    // MutantStack(const MutantStack &other);
-    // MutantStack &operator=(const MutantStack &other);
-    // ~MutantStack();
 
 public:
 
+    MutantStack();
+    MutantStack(const MutantStack &other);
+    MutantStack &operator=(const MutantStack &other);
+    ~MutantStack();
 
 	typedef typename std::deque<T>::iterator iterator;
 	typedef typename std::deque<T>::const_iterator const_iterator;
